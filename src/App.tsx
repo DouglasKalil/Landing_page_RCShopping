@@ -20,6 +20,7 @@ const IG = {
   promoReel: "https://www.instagram.com/rcshopping/reel/Dcwjkx9xnKd/",
   colorReel: "https://www.instagram.com/rcshopping/reel/DcBy-YZRCgd/",
   liveShopPost: "https://www.instagram.com/rcshopping/p/DclO-qFRREL/",
+  giftReel: "https://www.instagram.com/p/DbA-UlUxIuA/",
 };
 
 // ── Instagram embed loader ──────────────────────────────────────────────────────
@@ -278,8 +279,8 @@ function CategoryCard({ title, desc, img, href, delay }: { title: string; desc: 
   return (
     <Reveal delay={delay}>
       <div className="cat-card" style={{ borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer", height: "100%" }}>
-        <div style={{ overflow: "hidden", height: 260, background: "#e8eee0" }}>
-          <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <div style={{ overflow: "hidden", height: 260, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
         <div style={{ padding: 24 }}>
           <h3 style={{ fontFamily: "var(--font-sf)", fontWeight: 700, fontSize: 20, marginBottom: 8, color: "var(--text-dark)" }}>{title}</h3>
@@ -328,10 +329,10 @@ function CategoriesSection() {
 // ── Fashion Section ───────────────────────────────────────────────────────────
 function FashionSection() {
   const subs = [
-    { label: "Feminino", img: modaFemininaImg, pos: "center 12%" },
-    { label: "Masculino", img: modaMasculinaImg, pos: "center 42%" },
-    { label: "Infantil", img: modaInfantilImg, pos: "center 10%" },
-    { label: "Acessórios", img: sapatoImg, pos: "center 30%" },
+    { label: "Feminino", img: modaFemininaImg },
+    { label: "Masculino", img: modaMasculinaImg },
+    { label: "Infantil", img: modaInfantilImg },
+    { label: "Acessórios", img: sapatoImg },
   ];
 
   return (
@@ -349,8 +350,8 @@ function FashionSection() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36 }}>
               {subs.map((s) => (
                 <div key={s.label} className="cat-card" style={{ borderRadius: 12, overflow: "hidden", cursor: "pointer" }}>
-                  <div style={{ height: 190, background: "#e8eee0", overflow: "hidden" }}>
-                    <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: s.pos }} />
+                  <div style={{ height: 190, background: "#e8eee0", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                   </div>
                   <div style={{ padding: "10px 12px", background: "white" }}>
                     <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{s.label}</span>
@@ -364,8 +365,8 @@ function FashionSection() {
 
         <Reveal direction="right">
           <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 20, overflow: "hidden", height: 540, background: "#e8eee0" }}>
-              <img src={fotoImg} alt="Moda R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+            <div style={{ borderRadius: 20, overflow: "hidden", height: 540, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <img src={fotoImg} alt="Moda R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             </div>
             <div style={{ position: "absolute", bottom: -20, left: -20, background: "var(--brand-dark)", borderRadius: 16, padding: "20px 26px", color: "white", boxShadow: "0 12px 32px rgba(59,87,34,0.3)" }}>
               <div style={{ fontFamily: "var(--font-sf)", fontWeight: 900, fontSize: 30 }}>+200</div>
@@ -447,8 +448,8 @@ function ToysSection() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             {toys.map((t) => (
               <div key={t.label} className="cat-card" style={{ borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-                <div style={{ height: 130, background: "#e8f5d0", overflow: "hidden" }}>
-                  <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div style={{ height: 130, background: "#e8f5d0", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                 </div>
                 <div style={{ padding: "12px 14px", background: "white" }}>
                   <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{t.label}</span>
@@ -511,8 +512,8 @@ function AboutSection() {
     <section id="sobre" style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }} className="two-col-grid">
         <Reveal direction="left">
-          <div style={{ borderRadius: 20, overflow: "hidden", height: 480, background: "#e8eee0" }}>
-            <img src={fotoHistoriaImg} alt="A família por trás da R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 25%" }} />
+          <div style={{ borderRadius: 20, overflow: "hidden", height: 480, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src={fotoHistoriaImg} alt="A família por trás da R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
         </Reveal>
         <Reveal direction="right">
@@ -537,7 +538,7 @@ function AboutSection() {
 
 // ── Instagram ─────────────────────────────────────────────────────────────────
 function InstagramSection() {
-  const reels = [IG.sneakerReel, IG.promoReel, IG.colorReel, IG.liveShopPost];
+  const reels = [IG.sneakerReel, IG.promoReel, IG.colorReel, IG.liveShopPost, IG.giftReel];
   return (
     <section style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
