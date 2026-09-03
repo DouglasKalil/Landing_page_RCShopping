@@ -276,6 +276,22 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 640px) {
   .insta-embed-grid { grid-template-columns: 1fr !important; }
 }
+
+.insta-embed-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .insta-embed-grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 560px) {
+  .insta-embed-grid-3 { grid-template-columns: 1fr !important; }
+}
+
 .insta-embed-grid > iframe,
 .insta-embed-grid iframe.instagram-media {
   margin: 0 auto !important;

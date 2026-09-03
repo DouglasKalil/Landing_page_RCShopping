@@ -21,6 +21,8 @@ const IG = {
   colorReel: "https://www.instagram.com/rcshopping/reel/DcBy-YZRCgd/",
   liveShopPost: "https://www.instagram.com/rcshopping/p/DclO-qFRREL/",
   giftReel: "https://www.instagram.com/p/DbA-UlUxIuA/",
+  tripReel: "https://www.instagram.com/p/Da0454ugYeW/",
+  lookReel: "https://www.instagram.com/p/DanJ5cfxmCa/",
 };
 
 // ── Instagram embed loader ──────────────────────────────────────────────────────
@@ -275,12 +277,12 @@ function HeroSection() {
 }
 
 // ── Category Card ─────────────────────────────────────────────────────────────
-function CategoryCard({ title, desc, img, href, delay }: { title: string; desc: string; img: string; href: string; delay: number }) {
+function CategoryCard({ title, desc, img, ratio, href, delay }: { title: string; desc: string; img: string; ratio: string; href: string; delay: number }) {
   return (
     <Reveal delay={delay}>
-      <div className="cat-card" style={{ borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer", height: "100%" }}>
-        <div style={{ overflow: "hidden", height: 260, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+      <div className="cat-card" style={{ borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer" }}>
+        <div style={{ overflow: "hidden", aspectRatio: ratio, background: "#e8eee0" }}>
+          <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
         <div style={{ padding: 24 }}>
           <h3 style={{ fontFamily: "var(--font-sf)", fontWeight: 700, fontSize: 20, marginBottom: 8, color: "var(--text-dark)" }}>{title}</h3>
@@ -299,10 +301,10 @@ function CategoryCard({ title, desc, img, href, delay }: { title: string; desc: 
 // ── Categories Section ────────────────────────────────────────────────────────
 function CategoriesSection() {
   const categories = [
-    { title: "Moda", desc: "Estilo para todos os momentos.", img: modaFemininaImg, href: "#moda" },
-    { title: "Cama, Mesa e Banho", desc: "Mais conforto e beleza para sua casa.", img: "https://images.unsplash.com/photo-1758974817671-24f627809115?w=600&h=700&fit=crop&auto=format", href: "#casa" },
-    { title: "Brinquedos", desc: "Diversão para todas as idades.", img: criancaImg, href: "#brinquedos" },
-    { title: "Utilidades", desc: "Soluções práticas para sua rotina.", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=700&fit=crop&auto=format", href: "#utilidades" },
+    { title: "Moda", desc: "Estilo para todos os momentos.", img: modaFemininaImg, ratio: "603 / 853", href: "#moda" },
+    { title: "Cama, Mesa e Banho", desc: "Mais conforto e beleza para sua casa.", img: "https://images.unsplash.com/photo-1758974817671-24f627809115?w=600&h=700&fit=crop&auto=format", ratio: "6 / 7", href: "#casa" },
+    { title: "Brinquedos", desc: "Diversão para todas as idades.", img: criancaImg, ratio: "710 / 887", href: "#brinquedos" },
+    { title: "Utilidades", desc: "Soluções práticas para sua rotina.", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=700&fit=crop&auto=format", ratio: "6 / 7", href: "#utilidades" },
   ];
 
   return (
@@ -316,7 +318,7 @@ function CategoriesSection() {
             </h2>
           </div>
         </Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24, alignItems: "start" }}>
           {categories.map((cat, i) => (
             <CategoryCard key={cat.title} {...cat} delay={i * 0.1} />
           ))}
@@ -329,10 +331,10 @@ function CategoriesSection() {
 // ── Fashion Section ───────────────────────────────────────────────────────────
 function FashionSection() {
   const subs = [
-    { label: "Feminino", img: modaFemininaImg },
-    { label: "Masculino", img: modaMasculinaImg },
-    { label: "Infantil", img: modaInfantilImg },
-    { label: "Acessórios", img: sapatoImg },
+    { label: "Feminino", img: modaFemininaImg, ratio: "603 / 853" },
+    { label: "Masculino", img: modaMasculinaImg, ratio: "837 / 823" },
+    { label: "Infantil", img: modaInfantilImg, ratio: "678 / 850" },
+    { label: "Acessórios", img: sapatoImg, ratio: "701 / 655" },
   ];
 
   return (
@@ -347,11 +349,11 @@ function FashionSection() {
             <p style={{ color: "var(--text-mid)", lineHeight: 1.85, fontSize: 16, marginBottom: 36 }}>
               Encontre peças para todas as idades e ocasiões. Feminino, masculino, infantil e muito mais — com estilo, conforto e os melhores preços.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36, alignItems: "start" }}>
               {subs.map((s) => (
                 <div key={s.label} className="cat-card" style={{ borderRadius: 12, overflow: "hidden", cursor: "pointer" }}>
-                  <div style={{ height: 190, background: "#e8eee0", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                  <div style={{ aspectRatio: s.ratio, background: "#e8eee0", overflow: "hidden" }}>
+                    <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <div style={{ padding: "10px 12px", background: "white" }}>
                     <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{s.label}</span>
@@ -365,8 +367,8 @@ function FashionSection() {
 
         <Reveal direction="right">
           <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 20, overflow: "hidden", height: 540, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <img src={fotoImg} alt="Moda R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            <div style={{ borderRadius: 20, overflow: "hidden", aspectRatio: "669 / 872", background: "#e8eee0" }}>
+              <img src={fotoImg} alt="Moda R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div style={{ position: "absolute", bottom: -20, left: -20, background: "var(--brand-dark)", borderRadius: 16, padding: "20px 26px", color: "white", boxShadow: "0 12px 32px rgba(59,87,34,0.3)" }}>
               <div style={{ fontFamily: "var(--font-sf)", fontWeight: 900, fontSize: 30 }}>+200</div>
@@ -424,10 +426,10 @@ function HomeSection() {
 // ── Toys Section ──────────────────────────────────────────────────────────────
 function ToysSection() {
   const toys = [
-    { label: "Educativos", img: mochilaImg },
-    { label: "Infantis", img: fotoCriancaImg },
-    { label: "Jogos", img: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=300&h=300&fit=crop&auto=format&sat=-30" },
-    { label: "Presentes", img: roupaCriancaImg },
+    { label: "Educativos", img: mochilaImg, ratio: "789 / 788" },
+    { label: "Infantis", img: fotoCriancaImg, ratio: "712 / 892" },
+    { label: "Jogos", img: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=300&h=300&fit=crop&auto=format&sat=-30", ratio: "1 / 1" },
+    { label: "Presentes", img: roupaCriancaImg, ratio: "746 / 811" },
   ];
   return (
     <section id="brinquedos" style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
@@ -445,11 +447,11 @@ function ToysSection() {
           </div>
         </Reveal>
         <Reveal direction="right">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, alignItems: "start" }}>
             {toys.map((t) => (
               <div key={t.label} className="cat-card" style={{ borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-                <div style={{ height: 130, background: "#e8f5d0", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                <div style={{ aspectRatio: t.ratio, background: "#e8f5d0", overflow: "hidden" }}>
+                  <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <div style={{ padding: "12px 14px", background: "white" }}>
                   <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{t.label}</span>
@@ -512,8 +514,8 @@ function AboutSection() {
     <section id="sobre" style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }} className="two-col-grid">
         <Reveal direction="left">
-          <div style={{ borderRadius: 20, overflow: "hidden", height: 480, background: "#e8eee0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src={fotoHistoriaImg} alt="A família por trás da R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          <div style={{ borderRadius: 20, overflow: "hidden", aspectRatio: "624 / 657", background: "#e8eee0" }}>
+            <img src={fotoHistoriaImg} alt="A família por trás da R&C Shopping" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
         </Reveal>
         <Reveal direction="right">
@@ -538,7 +540,8 @@ function AboutSection() {
 
 // ── Instagram ─────────────────────────────────────────────────────────────────
 function InstagramSection() {
-  const reels = [IG.sneakerReel, IG.promoReel, IG.colorReel, IG.liveShopPost, IG.giftReel];
+  const reels = [IG.sneakerReel, IG.promoReel, IG.colorReel, IG.liveShopPost];
+  const featured = [IG.giftReel, IG.tripReel, IG.lookReel];
   return (
     <section style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
@@ -552,8 +555,18 @@ function InstagramSection() {
           </div>
         </Reveal>
         <Reveal>
-          <div style={{ display: "grid", gap: 20, marginBottom: 36 }} className="insta-embed-grid">
+          <div style={{ display: "grid", gap: 20, marginBottom: 48 }} className="insta-embed-grid">
             {reels.map((url) => (
+              <InstagramEmbed key={url} url={url} />
+            ))}
+          </div>
+        </Reveal>
+        <Reveal>
+          <p style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--brand-mid)", textAlign: "center", marginBottom: 20 }}>
+            Momentos com quem confia na R&C Shopping
+          </p>
+          <div style={{ display: "grid", gap: 20, marginBottom: 36 }} className="insta-embed-grid-3">
+            {featured.map((url) => (
               <InstagramEmbed key={url} url={url} />
             ))}
           </div>
