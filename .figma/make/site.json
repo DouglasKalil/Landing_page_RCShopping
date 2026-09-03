@@ -1,0 +1,14 @@
+{
+  "title": "R&C Shopping",
+  "description": "This web application enhances brand identity by allowing users to create visually appealing websites that incorporate custom logos and color schemes.",
+  "icons": {
+    "icon": "/favicon.png"
+  },
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
