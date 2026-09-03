@@ -277,11 +277,11 @@ function HeroSection() {
 }
 
 // ── Category Card ─────────────────────────────────────────────────────────────
-function CategoryCard({ title, desc, img, ratio, href, delay }: { title: string; desc: string; img: string; ratio: string; href: string; delay: number }) {
+function CategoryCard({ title, desc, img, w, h, href, delay }: { title: string; desc: string; img: string; w: number; h: number; href: string; delay: number }) {
   return (
     <Reveal delay={delay}>
-      <div className="cat-card" style={{ borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer" }}>
-        <div style={{ overflow: "hidden", aspectRatio: ratio, background: "#e8eee0" }}>
+      <div className="cat-card" style={{ width: w, maxWidth: "100%", borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer" }}>
+        <div style={{ height: h, overflow: "hidden", background: "#e8eee0" }}>
           <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
         <div style={{ padding: 24 }}>
@@ -301,10 +301,10 @@ function CategoryCard({ title, desc, img, ratio, href, delay }: { title: string;
 // ── Categories Section ────────────────────────────────────────────────────────
 function CategoriesSection() {
   const categories = [
-    { title: "Moda", desc: "Estilo para todos os momentos.", img: modaFemininaImg, ratio: "603 / 853", href: "#moda" },
-    { title: "Cama, Mesa e Banho", desc: "Mais conforto e beleza para sua casa.", img: "https://images.unsplash.com/photo-1758974817671-24f627809115?w=600&h=700&fit=crop&auto=format", ratio: "6 / 7", href: "#casa" },
-    { title: "Brinquedos", desc: "Diversão para todas as idades.", img: criancaImg, ratio: "710 / 887", href: "#brinquedos" },
-    { title: "Utilidades", desc: "Soluções práticas para sua rotina.", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=700&fit=crop&auto=format", ratio: "6 / 7", href: "#utilidades" },
+    { title: "Moda", desc: "Estilo para todos os momentos.", img: modaFemininaImg, w: 184, h: 260, href: "#moda" },
+    { title: "Cama, Mesa e Banho", desc: "Mais conforto e beleza para sua casa.", img: "https://images.unsplash.com/photo-1758974817671-24f627809115?w=600&h=700&fit=crop&auto=format", w: 223, h: 260, href: "#casa" },
+    { title: "Brinquedos", desc: "Diversão para todas as idades.", img: criancaImg, w: 208, h: 260, href: "#brinquedos" },
+    { title: "Utilidades", desc: "Soluções práticas para sua rotina.", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=700&fit=crop&auto=format", w: 223, h: 260, href: "#utilidades" },
   ];
 
   return (
@@ -318,7 +318,7 @@ function CategoriesSection() {
             </h2>
           </div>
         </Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 24, alignItems: "start" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 24 }}>
           {categories.map((cat, i) => (
             <CategoryCard key={cat.title} {...cat} delay={i * 0.1} />
           ))}
@@ -331,10 +331,10 @@ function CategoriesSection() {
 // ── Fashion Section ───────────────────────────────────────────────────────────
 function FashionSection() {
   const subs = [
-    { label: "Feminino", img: modaFemininaImg, ratio: "603 / 853" },
-    { label: "Masculino", img: modaMasculinaImg, ratio: "837 / 823" },
-    { label: "Infantil", img: modaInfantilImg, ratio: "678 / 850" },
-    { label: "Acessórios", img: sapatoImg, ratio: "701 / 655" },
+    { label: "Feminino", img: modaFemininaImg, w: 198, h: 280 },
+    { label: "Masculino", img: modaMasculinaImg, w: 285, h: 280 },
+    { label: "Infantil", img: modaInfantilImg, w: 223, h: 280 },
+    { label: "Acessórios", img: sapatoImg, w: 300, h: 280 },
   ];
 
   return (
@@ -349,15 +349,19 @@ function FashionSection() {
             <p style={{ color: "var(--text-mid)", lineHeight: 1.85, fontSize: 16, marginBottom: 36 }}>
               Encontre peças para todas as idades e ocasiões. Feminino, masculino, infantil e muito mais — com estilo, conforto e os melhores preços.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36, alignItems: "start" }}>
-              {subs.map((s) => (
-                <div key={s.label} className="cat-card" style={{ borderRadius: 12, overflow: "hidden", cursor: "pointer" }}>
-                  <div style={{ aspectRatio: s.ratio, background: "#e8eee0", overflow: "hidden" }}>
-                    <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  <div style={{ padding: "10px 12px", background: "white" }}>
-                    <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{s.label}</span>
-                  </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 36 }}>
+              {[[subs[0], subs[1]], [subs[2], subs[3]]].map((row, ri) => (
+                <div key={ri} style={{ display: "flex", gap: 12, justifyContent: "center" }}>
+                  {row.map((s) => (
+                    <div key={s.label} className="cat-card" style={{ width: s.w, maxWidth: "100%", borderRadius: 12, overflow: "hidden", cursor: "pointer" }}>
+                      <div style={{ height: s.h, background: "#e8eee0", overflow: "hidden" }}>
+                        <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      </div>
+                      <div style={{ padding: "10px 12px", background: "white" }}>
+                        <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{s.label}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
@@ -426,10 +430,10 @@ function HomeSection() {
 // ── Toys Section ──────────────────────────────────────────────────────────────
 function ToysSection() {
   const toys = [
-    { label: "Educativos", img: mochilaImg, ratio: "789 / 788" },
-    { label: "Infantis", img: fotoCriancaImg, ratio: "712 / 892" },
-    { label: "Jogos", img: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=300&h=300&fit=crop&auto=format&sat=-30", ratio: "1 / 1" },
-    { label: "Presentes", img: roupaCriancaImg, ratio: "746 / 811" },
+    { label: "Educativos", img: mochilaImg, w: 200, h: 200 },
+    { label: "Infantis", img: fotoCriancaImg, w: 160, h: 200 },
+    { label: "Jogos", img: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=300&h=300&fit=crop&auto=format&sat=-30", w: 200, h: 200 },
+    { label: "Presentes", img: roupaCriancaImg, w: 184, h: 200 },
   ];
   return (
     <section id="brinquedos" style={{ padding: "100px 24px", background: "var(--bg-soft)" }}>
@@ -447,15 +451,19 @@ function ToysSection() {
           </div>
         </Reveal>
         <Reveal direction="right">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, alignItems: "start" }}>
-            {toys.map((t) => (
-              <div key={t.label} className="cat-card" style={{ borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-                <div style={{ aspectRatio: t.ratio, background: "#e8f5d0", overflow: "hidden" }}>
-                  <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <div style={{ padding: "12px 14px", background: "white" }}>
-                  <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{t.label}</span>
-                </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {[[toys[0], toys[1]], [toys[2], toys[3]]].map((row, ri) => (
+              <div key={ri} style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+                {row.map((t) => (
+                  <div key={t.label} className="cat-card" style={{ width: t.w, maxWidth: "100%", borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+                    <div style={{ height: t.h, background: "#e8f5d0", overflow: "hidden" }}>
+                      <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div style={{ padding: "12px 14px", background: "white" }}>
+                      <span style={{ fontFamily: "var(--font-sf)", fontWeight: 600, fontSize: 14, color: "var(--text-dark)" }}>{t.label}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
