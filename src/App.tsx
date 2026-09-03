@@ -280,8 +280,8 @@ function HeroSection() {
 function CategoryCard({ title, desc, img, w, h, href, delay }: { title: string; desc: string; img: string; w: number; h: number; href: string; delay: number }) {
   return (
     <Reveal delay={delay}>
-      <div className="cat-card" style={{ width: w, maxWidth: "100%", borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer" }}>
-        <div style={{ height: h, overflow: "hidden", background: "#e8eee0" }}>
+      <div className="cat-card frame-box" style={{ "--fw": `${w}px`, borderRadius: 16, overflow: "hidden", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.07)", cursor: "pointer" } as CSSProperties}>
+        <div style={{ aspectRatio: `${w} / ${h}`, overflow: "hidden", background: "#e8eee0" }}>
           <img src={img} alt={title} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
         <div style={{ padding: 24 }}>
@@ -351,10 +351,10 @@ function FashionSection() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 36 }}>
               {[[subs[0], subs[1]], [subs[2], subs[3]]].map((row, ri) => (
-                <div key={ri} style={{ display: "flex", gap: 12, justifyContent: "center" }}>
+                <div key={ri} className="pair-row" style={{ gap: 12 }}>
                   {row.map((s) => (
-                    <div key={s.label} className="cat-card" style={{ width: s.w, maxWidth: "100%", borderRadius: 12, overflow: "hidden", cursor: "pointer" }}>
-                      <div style={{ height: s.h, background: "#e8eee0", overflow: "hidden" }}>
+                    <div key={s.label} className="cat-card frame-box" style={{ "--fw": `${s.w}px`, borderRadius: 12, overflow: "hidden", cursor: "pointer" } as CSSProperties}>
+                      <div style={{ aspectRatio: `${s.w} / ${s.h}`, background: "#e8eee0", overflow: "hidden" }}>
                         <img src={s.img} alt={s.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                       </div>
                       <div style={{ padding: "10px 12px", background: "white" }}>
@@ -453,10 +453,10 @@ function ToysSection() {
         <Reveal direction="right">
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {[[toys[0], toys[1]], [toys[2], toys[3]]].map((row, ri) => (
-              <div key={ri} style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+              <div key={ri} className="pair-row" style={{ gap: 16 }}>
                 {row.map((t) => (
-                  <div key={t.label} className="cat-card" style={{ width: t.w, maxWidth: "100%", borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-                    <div style={{ height: t.h, background: "#e8f5d0", overflow: "hidden" }}>
+                  <div key={t.label} className="cat-card frame-box" style={{ "--fw": `${t.w}px`, borderRadius: 14, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" } as CSSProperties}>
+                    <div style={{ aspectRatio: `${t.w} / ${t.h}`, background: "#e8f5d0", overflow: "hidden" }}>
                       <img src={t.img} alt={t.label} className="cat-img" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
                     <div style={{ padding: "12px 14px", background: "white" }}>
